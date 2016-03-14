@@ -44,8 +44,10 @@ import random
 
 class Transport:
 
-    def __init__(self, name, speed = 0, wheel_count = 0, mass = 0, color = (0, 0, 0)):
-        self.name = name
+    index = 0
+
+    def __init__(self, speed = 0, wheel_count = 0, mass = 0, color = (0, 0, 0)):
+        self.index = Transport.index = Transport.index + 1
         self.speed = speed
         self.wheel_count = wheel_count
         self.mass = mass
@@ -56,43 +58,49 @@ class Transport:
         self.pos += self.speed * time
 
     def show_pos(self):
-        print(self.name, ':', self.pos)
+        print(self, ':', self.pos)
 
     def crash(self, o):
-        print(u'Столкнулись:', self.name, u'и', o.name)
+        print(u'Столкнулись:', self.index, u'и', o.name)
         self.pos = 0
         o.pos = 0
 
     def fire(self, o):
         pass
 
+    def __str__(self):
+        return '{}-{}'.format(self.__class__.__name__, self.index)
+
+    def __repr__(self):
+        return self.__str__()
+
 
 class Car(Transport):
 
-    def __init__(self, name):
-        super().__init__(name, speed = 120, wheel_count = 4, mass = 2, color = (0, 255, 0))
+    def __init__(self):
+        super().__init__(speed = 120, wheel_count = 4, mass = 2, color = (0, 255, 0))
 
 
 class Tank(Transport):
 
-    def __init__(self, name):
-        super(Tank, self).__init__(name, speed = 90, wheel_count = 18, mass = 20, color = (150, 155, 30))
+    def __init__(self):
+        super(Tank, self).__init__(speed = 90, wheel_count = 18, mass = 20, color = (150, 155, 30))
 
         self.can_fire = True
 
     def fire(self, o):
         o.pos = 0
-        print(self.name, 'killed:', o.name)
+        print(self, 'killed:', o)
 
     def crash(self, o):
-        print(u'Столкнулись:', self.name, u'и', o.name)
+        print(u'Столкнулись:', self.index, u'и', o.name)
         o.pos = 0
 
 
 class Airplane(Transport):
 
-    def __init__(self, name):
-        super().__init__(name, speed = 800, wheel_count = 22, mass = 100,
+    def __init__(self):
+        super().__init__(speed = 800, wheel_count = 22, mass = 100,
             color = (250, 250, 250))
 
         self.wings_count = 2
@@ -101,12 +109,12 @@ class Airplane(Transport):
 
 
 machines = [
-    Car('car-1'),
-    Car('car-2'),
-    Car('car-3'),
-    Tank('tank-1'),
-    Airplane('plane-1'),
-    Airplane('plane-2'),
+    Car(),
+    Car(),
+    Car(),
+    Tank(),
+    Airplane(),
+    Airplane(),
 ]
 
 
@@ -128,6 +136,7 @@ for m in machines:
     m.show_pos()
 
 print('-'*20)
+
 
 
 
