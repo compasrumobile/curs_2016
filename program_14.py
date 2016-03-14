@@ -68,11 +68,13 @@ class Transport:
     def fire(self, o):
         pass
 
+    # для вывода на экран в консоль объекта самого
     def __str__(self):
         return '{}-{}'.format(self.__class__.__name__, self.index)
 
+    # для вывода на экран (как пример) в составе списка
     def __repr__(self):
-        return self.__str__()
+        return 'R:'+self.__str__()
 
 
 class Car(Transport):
@@ -136,6 +138,8 @@ for m in machines:
     m.show_pos()
 
 print('-'*20)
+
+print(machines)
 
 
 
