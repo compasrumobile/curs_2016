@@ -38,76 +38,13 @@ polygon.show_points()
 p = polygon.find_top_point()
 print(p.y)'''
 
-
-
 import random
 
-class Transport:
+from airplane import Airplane
 
-    index = 0
+from car import Car
 
-    def __init__(self, speed = 0, wheel_count = 0, mass = 0, color = (0, 0, 0)):
-        self.index = Transport.index = Transport.index + 1
-        self.speed = speed
-        self.wheel_count = wheel_count
-        self.mass = mass
-        self.color = color
-        self.pos = 0
-
-    def drive(self, time):
-        self.pos += self.speed * time
-
-    def show_pos(self):
-        print(self, ':', self.pos)
-
-    def crash(self, o):
-        print(u'Столкнулись:', self.index, u'и', o.name)
-        self.pos = 0
-        o.pos = 0
-
-    def fire(self, o):
-        pass
-
-    # для вывода на экран в консоль объекта самого
-    def __str__(self):
-        return '{}-{}'.format(self.__class__.__name__, self.index)
-
-    # для вывода на экран (как пример) в составе списка
-    def __repr__(self):
-        return 'R:'+self.__str__()
-
-
-class Car(Transport):
-
-    def __init__(self):
-        super().__init__(speed = 120, wheel_count = 4, mass = 2, color = (0, 255, 0))
-
-
-class Tank(Transport):
-
-    def __init__(self):
-        super(Tank, self).__init__(speed = 90, wheel_count = 18, mass = 20, color = (150, 155, 30))
-
-        self.can_fire = True
-
-    def fire(self, o):
-        o.pos = 0
-        print(self, 'killed:', o)
-
-    def crash(self, o):
-        print(u'Столкнулись:', self.index, u'и', o.name)
-        o.pos = 0
-
-
-class Airplane(Transport):
-
-    def __init__(self):
-        super().__init__(speed = 800, wheel_count = 22, mass = 100,
-            color = (250, 250, 250))
-
-        self.wings_count = 2
-        self.tail = True
-
+from tank import Tank
 
 
 machines = [
@@ -141,6 +78,14 @@ print('-'*20)
 
 print(machines)
 
+
+print(machines[0].__dict__)
+
+for name in Car.__dict__:
+    print(name, ':', Car.__dict__[name])
+
+
+print(Car.__bases__)
 
 
 
