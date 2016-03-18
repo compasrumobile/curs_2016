@@ -19,9 +19,8 @@ class Train:
         print('---', self.trains())
 
     def __str__(self):
-        weight = sum([car.weight for car in self.cars])
         return '{}({}/{}): {}'.format(Tools.class_name(self),
-                                      self.trains_2(), weight, self.cars)
+                                      self.trains_2(), self.weight, self.cars)
 
 
     @staticmethod
@@ -31,6 +30,13 @@ class Train:
     @classmethod
     def trains_2(cls):
         return cls._objects_count
+
+
+
+    @property
+    def weight(self):
+        return sum([car.weight for car in self.cars])
+
 
 
 class RedArrow(Train):
@@ -48,21 +54,39 @@ class RedArrow(Train):
 
 class Car:
 
-    def __init__(self, weight):
+    def __init__(self, weight, number):
         self.weight = weight
+        self.__number = number
 
     def __str__(self):
-        return '{}: {}'.format(self.__class__.__name__, self.weight)
+        return '{}({}): {}'.format(self.__class__.__name__, self.number, self.weight)
 
     def __repr__(self):
         return self.__str__()
+
+
+    @property
+    def number(self):
+        print('??????')
+        return self.__number
+
+    @number.setter
+    def number(self, value):
+        print('!!!!!!!')
+        #self.__number = value / 2
+
+    @number.deleter
+    def number(self):
+        print('XXXXXXX')
+        self.__number = 0
+        #del self.__number
 
 
 if __name__=='__main__':
 
     train = Train()
 
-    train2 = Train([Car(3), Car(10), Car(5)])
+    train2 = Train([Car(3, 1), Car(10, 5), Car(5, 3)])
 
     ra = RedArrow()
 
@@ -72,6 +96,17 @@ if __name__=='__main__':
     print(train2)
 
     print(ra)
+
+    print( train2.cars[2].number )
+
+    train2.cars[2].number = 300
+
+    print(train2)
+
+    del train2.cars[2].number
+
+
+    print(train2)
 
 
 
