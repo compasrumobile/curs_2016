@@ -16,8 +16,6 @@ class Train:
 
         self.cars = cars
 
-        print('---', self.trains())
-
     def __str__(self):
         return '{}({}/{}): {}'.format(Tools.class_name(self),
                                       self.trains_2(), self.weight, self.cars)
@@ -36,6 +34,13 @@ class Train:
     @property
     def weight(self):
         return sum([car.weight for car in self.cars])
+
+
+    def __getattr__(self, name):
+        print("try to get attr", name)
+        if name == 'color':
+            return 'i no have color'
+        return None
 
 
 
@@ -91,22 +96,18 @@ if __name__=='__main__':
     ra = RedArrow()
 
 
-    print(train)
+    print(train2.weight)
 
-    print(train2)
+    train2.cars[1].weight = 20
 
-    print(ra)
-
-    print( train2.cars[2].number )
-
-    train2.cars[2].number = 300
-
-    print(train2)
-
-    del train2.cars[2].number
+    print(train2.weight)
 
 
-    print(train2)
+
+
+    print(train2.color)
+    print(train2.height)
+    print(train2.cars)
 
 
 
