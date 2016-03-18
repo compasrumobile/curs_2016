@@ -20,7 +20,8 @@ class Train:
 
     def __str__(self):
         weight = sum([car.weight for car in self.cars])
-        return '{}({}): {}'.format(Tools.class_name(self), weight, self.cars)
+        return '{}({}/{}): {}'.format(Tools.class_name(self),
+                                      self.trains_2(), weight, self.cars)
 
 
     @staticmethod
@@ -37,8 +38,12 @@ class RedArrow(Train):
     _objects_count = 0
 
     def __init__(self, cars = []):
+        super().__init__(cars)
 
         RedArrow._objects_count += 1
+
+
+#RedArrow.trains_2()
 
 
 class Car:
@@ -57,34 +62,16 @@ if __name__=='__main__':
 
     train = Train()
 
-    print(train)
-
     train2 = Train([Car(3), Car(10), Car(5)])
 
-    print(train2)
-
     ra = RedArrow()
+
+
+    print(train)
+
+    print(train2)
 
     print(ra)
 
 
-    print('__________________')
-
-
-    from datetime import datetime
-
-    class TimeString:
-
-        # метод, не нуждающийся в объекте
-        @staticmethod
-        def now():
-            return '{:%H:%M:%S}'.format(datetime.now())
-
-        def now_o(self):
-            return '{:%H:%M:%S}'.format(datetime.now())
-
-
-    print(TimeString.now())
-
-    print(TimeString().now_o())
 
