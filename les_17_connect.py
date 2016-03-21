@@ -11,7 +11,7 @@ class ExampleConnect:
 
         # создаем курсор - точка доступа к таблице БД
         self.__cursor = self.__conn.cursor()
-        
+
 
     def select(self):
         # получаем студентов
@@ -20,6 +20,11 @@ class ExampleConnect:
 
 
     def create(self):
+        '''
+        Создание базы данных
+        :return: None
+        '''
+
         self.__create_table('students')
         self.__create_table('books')
 
@@ -43,3 +48,12 @@ class ExampleConnect:
 
         except sqlite3.OperationalError:
             pass
+
+
+
+if __name__=='__main__':
+
+    connect = ExampleConnect()
+
+    print(connect.select.__doc__)
+    print(connect.create.__doc__)
