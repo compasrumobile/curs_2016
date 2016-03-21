@@ -7,61 +7,9 @@ conn = sqlite3.connect('example.db')
 # создаем курсор - точка доступа к таблице БД
 c = conn.cursor()
 
-try:
-    # создаем таблицу
-    c.execute('CREATE TABLE students (id INTEGER, name text, date text)')
-
-    # сохраняет изменения в БД
-    conn.commit()
-
-    print('create students...')
-
-except sqlite3.OperationalError:
-    pass
-
-
-try:
-    # создаем таблицу
-    c.execute('CREATE TABLE books (id INTEGER, name text, date text)')
-
-    # сохраняет изменения в БД
-    conn.commit()
-
-    print('create books...')
-
-except sqlite3.OperationalError:
-    pass
-
-
-# берем данные из таблицы
-#cur = c.execute("SELECT * FROM students")
-
-# берем 1-ую запись (строку) из таблицы
-#print(c.fetchone())
-
-# получаем количество записей в таблице
-#print('rowcount:', cur.rowcount, 'description:', cur.description)
-
-
-
-# Добавление данных
-c.execute("INSERT INTO students VALUES (0, 'Ivan', '1980-01-05')")
-
-c.execute("INSERT INTO students VALUES (1, 'Mariya', '1985-03-15')")
-
-
-
-
-conn.commit()
-
 # получаем студентов
-cur = c.execute("SELECT * FROM students")
-
-# берем 1-ую запись (строку) из таблицы
-print(c.fetchone())
-
-# получаем количество записей в таблице
-print('rowcount:', cur.rowcount, 'description:', c.description)
+for row in c.execute("SELECT * FROM students"):
+    print(row)
 
 
 # закрываем соединение

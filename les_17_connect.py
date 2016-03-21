@@ -1,0 +1,45 @@
+# coding: utf-8
+import sqlite3
+
+
+class ExampleConnect:
+
+
+    def __init__(self):
+        # открываем или создаем базу
+        self.__conn = sqlite3.connect('example.db')
+
+        # создаем курсор - точка доступа к таблице БД
+        self.__cursor = self.__conn.cursor()
+        
+
+    def select(self):
+        # получаем студентов
+        for row in self.__cursor.execute("SELECT * FROM students"):
+            print(row)
+
+
+    def create(self):
+        self.__create_table('students')
+        self.__create_table('books')
+
+        # Добавление данных
+        self.__cursor.execute("INSERT INTO students VALUES (0, 'Ivan', '1980-01-05')")
+        self.__cursor.execute("INSERT INTO students VALUES (1, 'Mariya', '1985-03-15')")
+
+        self.__conn.commit()
+
+
+    def __create_table(self, table_name):
+
+        try:
+            # создаем таблицу
+            self.__cursor.execute('CREATE TABLE ? (id INTEGER, name text, date text)', table_name)
+
+            # сохраняет изменения в БД
+            self.__conn.commit()
+
+            print('create {}...'.format(table_name))
+
+        except sqlite3.OperationalError:
+            pass
