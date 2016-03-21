@@ -13,6 +13,15 @@ class ExampleConnect:
         self.__cursor = self.__conn.cursor()
 
 
+    def __del__(self):
+        # деструктор
+
+        print('Закрываем соединение...')
+
+        # закрытие соединения
+        self.__conn.close()
+
+
     def select(self):
         'получаем студентов'
         for row in self.__cursor.execute("SELECT * FROM students"):
