@@ -7,7 +7,7 @@ from les_17_connect import ExampleConnect
 connect = ExampleConnect()
 
 # создание БД
-#connect.create()
+connect.create()
 
 # выводим на экран студентов
 connect.select()

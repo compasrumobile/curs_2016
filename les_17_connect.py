@@ -38,8 +38,14 @@ class ExampleConnect:
         self.__create_table('books')
 
         # Добавление данных
-        self.__cursor.execute("INSERT INTO students VALUES (0, 'Ivan', '1980-01-05')")
-        self.__cursor.execute("INSERT INTO students VALUES (1, 'Mariya', '1985-03-15')")
+        #self.__cursor.execute("INSERT INTO students VALUES (0, 'Ivan', '1980-01-05')")
+        #self.__cursor.execute("INSERT INTO students VALUES (1, 'Mariya', '1985-03-15')")
+
+        # добавлять массивы данных
+        self.__cursor.executemany("insert into students values (?, ?, ?)", [
+            (0, 'Ivan', '1980-01-05'),
+            (1, 'Mariya', '1985-03-15')
+        ])
 
         self.__conn.commit()
 
