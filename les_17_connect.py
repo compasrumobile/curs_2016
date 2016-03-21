@@ -49,6 +49,12 @@ class ExampleConnect:
 
         self.__conn.commit()
 
+    def update_Mariya(self):
+        self.__cursor.execute("UPDATE students set name=? where name=?", ('Masha', 'Mariya'))
+
+        # сохраняет изменения в БД
+        self.__conn.commit()
+
 
     def __create_table(self, table_name):
 
