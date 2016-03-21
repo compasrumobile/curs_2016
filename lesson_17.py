@@ -9,7 +9,7 @@ c = conn.cursor()
 
 try:
     # создаем таблицу
-    c.execute('CREATE TABLE students (name text, date text)')
+    c.execute('CREATE TABLE students (id INTEGER, name text, date text)')
 
     # сохраняет изменения в БД
     conn.commit()
@@ -22,7 +22,7 @@ except sqlite3.OperationalError:
 
 try:
     # создаем таблицу
-    c.execute('CREATE TABLE books (name text, date text)')
+    c.execute('CREATE TABLE books (id INTEGER, name text, date text)')
 
     # сохраняет изменения в БД
     conn.commit()
@@ -31,6 +31,21 @@ try:
 
 except sqlite3.OperationalError:
     pass
+
+
+# берем данные из таблицы
+cur = c.execute("SELECT * FROM students")
+
+# берем 1-ую запись (строку) из таблицы
+#print(c.fetchone())
+
+# получаем количество записей в таблице
+print('rowcount:', cur.rowcount, 'description:', cur.description)
+
+
+#c.execute("schema students")
+#print(c.fetchone())
+
 
 
 # закрываем соединение
