@@ -14,7 +14,7 @@ class ExampleConnect:
 
 
     def select(self):
-        # получаем студентов
+        'получаем студентов'
         for row in self.__cursor.execute("SELECT * FROM students"):
             print(row)
 
@@ -39,14 +39,15 @@ class ExampleConnect:
 
         try:
             # создаем таблицу
-            self.__cursor.execute('CREATE TABLE ? (id INTEGER, name text, date text)', table_name)
+            self.__cursor.execute('CREATE TABLE {} (id INTEGER, name text, date text)'.format(
+                table_name))
 
             # сохраняет изменения в БД
             self.__conn.commit()
 
             print('create {}...'.format(table_name))
 
-        except sqlite3.OperationalError:
+        except ImportError: #sqlite3.OperationalError:
             pass
 
 
