@@ -50,11 +50,18 @@ c.execute("INSERT INTO students VALUES (0, 'Ivan', '1980-01-05')")
 c.execute("INSERT INTO students VALUES (1, 'Mariya', '1985-03-15')")
 
 
+
+
+conn.commit()
+
 # получаем студентов
-c.execute("SELECT * FROM students")
+cur = c.execute("SELECT * FROM students")
 
 # берем 1-ую запись (строку) из таблицы
 print(c.fetchone())
+
+# получаем количество записей в таблице
+print('rowcount:', cur.rowcount, 'description:', c.description)
 
 
 # закрываем соединение
