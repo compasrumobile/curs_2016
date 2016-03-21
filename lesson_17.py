@@ -14,9 +14,23 @@ try:
     # сохраняет изменения в БД
     conn.commit()
 
+    print('create students...')
+
 except sqlite3.OperationalError:
     pass
 
+
+try:
+    # создаем таблицу
+    c.execute('CREATE TABLE books (name text, date text)')
+
+    # сохраняет изменения в БД
+    conn.commit()
+
+    print('create books...')
+
+except sqlite3.OperationalError:
+    pass
 
 
 # закрываем соединение
