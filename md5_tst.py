@@ -7,7 +7,7 @@ def md5sum(t):
     return hashlib.md5(t).hexdigest()
 
 
-con = sqlite3.connect(":memory:")
+con = sqlite3.connect("ex.db")
 
 # регистрируем функцию в базе
 con.create_function("md5", 1, md5sum)
@@ -17,6 +17,10 @@ cur = con.cursor()
 
 cur.execute("select md5(?)", (b"bhjvd",))
 print(cur.fetchone()[0])
+
+
+con.commit()
+con.close()
 
 
 #with open('dump.sql', 'w') as f:

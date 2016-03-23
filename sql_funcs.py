@@ -1,4 +1,11 @@
 import sqlite3
+import hashlib
+
+
+# хэширует
+def md5sum(t):
+    return hashlib.md5(t).hexdigest()
+
 
 class Point:
     def __init__(self, x, y):
@@ -23,20 +30,28 @@ sqlite3.register_adapter(Point, adapt_point)
 sqlite3.register_converter("point", convert_point)
 
 p = Point(4.0, -3.2)
+p2 = Point(10.0, -0.2)
 
 #########################
 # 1) Using declared types
 con = sqlite3.connect(":memory:", detect_types=sqlite3.PARSE_DECLTYPES)
+
+# регистрируем функцию в базе
+con.create_function("md5", 1, md5sum)
+
 cur = con.cursor()
 cur.execute("create table test (p point)")
 
-cur.execute("insert into test(p) values (?)", (p,))
-cur.execute("select p from test")
-res = cur.fetchone()[0]
+cur.executemany("insert into test(p) values (?)", ((p,),(p2,)))
+#cur.execute("insert into test(p) values (?)", (p2,))
 
-print(cur.description)
+for p, md in cur.execute("select p, md5(p) from test"):
+    print(p, md)
+#res = cur.fetchone()[0]
 
-print("with declared types:", res, type(res))
+#print(cur.description)
+
+#print("with declared types:", res, type(res))
 cur.close()
 con.close()
 
