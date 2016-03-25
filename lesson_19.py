@@ -53,9 +53,30 @@ x == y = True
 # Big Endian
 # Little Endian
 
-print(sys.byteorder) # 'big' или 'little'
+# print(sys.byteorder) # 'big' или 'little'
 
 
+# sys.argv - список параметров значений командной строки
+
+# ?
+
+
+# if __name__=='__main__':
+#     import argparse # удобные параметры командной строки
+#
+#     parser = argparse.ArgumentParser(description='Process some integers.')
+#     parser.add_argument('integers', metavar='N', type=int, nargs='+',
+#                        help='an integer for the accumulator')
+#     parser.add_argument('--hello', dest='hello', action='store',
+#                        type=str, default='-')
+#     parser.add_argument('--sum', dest='accumulate', action='store_const',
+#                        const=sum, default=max,
+#                        help='sum the integers (default: find the max)')
+#
+#     args = parser.parse_args()
+#     print(args.accumulate(args.integers))
+#
+#     print(args.hello)
 
 
 
