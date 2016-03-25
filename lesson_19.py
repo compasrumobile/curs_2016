@@ -93,22 +93,30 @@ x == y = True
 #     print(args.hello)
 
 # ------------------------------------------------------
+# проверяем разрядность системы
 
-'''
-x86 - 32   !
-x64 - 64    ?  x32,x64
-'''
+# '''
+# x86 - 32   !
+# x64 - 64    ?  x32,x64
+# '''
+#
+# from distutils.util import get_platform
+#
+#
+# print(get_platform())
+#
+# import platform
+# print(platform.architecture())
+#
+#
+# print(sys.maxsize)
 
-from distutils.util import get_platform
 
+# ------------------------------------------------------
+# проверяем информаци про числа с плавающей точкой
+print('-'*10)
+print(sys.float_info)
 
-print(get_platform())
-
-import platform
-print(platform.architecture())
-
-
-print(sys.maxsize)
 
 
 
