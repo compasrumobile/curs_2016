@@ -114,10 +114,23 @@ x == y = True
 
 # ------------------------------------------------------
 # проверяем информаци про числа с плавающей точкой
-print('-'*10)
-print(sys.float_info)
+# print('-'*10)
+# print(sys.float_info)
 
 
+# ------------------------------------------------------
+# ? узнать кодировку в системе
+#
+# print('getdefaultencoding:', sys.getdefaultencoding())
+#
+# print('getfilesystemencoding:', sys.getfilesystemencoding())
+
+
+# кол-во рекурсий в программе
+
+sys.setrecursionlimit(100000)
+
+print(sys.getrecursionlimit())
 
 
 
