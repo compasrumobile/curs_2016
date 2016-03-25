@@ -126,11 +126,28 @@ x == y = True
 # print('getfilesystemencoding:', sys.getfilesystemencoding())
 
 
+# ------------------------------------------------------
+
 # кол-во рекурсий в программе
+#
+# sys.setrecursionlimit(100000)
+#
+# print(sys.getrecursionlimit())
 
-sys.setrecursionlimit(100000)
+# import shutil
+#
+# shutil.copy2('md5_tst.py', 'md5_tst_tst.py') # копируем файл
+#
+#
+# os.remove('md5_tst_tst.py') # удаляем файл
+#
 
-print(sys.getrecursionlimit())
+# ------------------------------------------------------
+
+# ищем файлы по шаблону
+# import glob
+#
+# print( glob.glob("*.db") )
 
 
 
