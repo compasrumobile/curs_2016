@@ -9,11 +9,13 @@ class StudentInterface:
 
     @abstractmethod
     def get_name(self):
-        raise NotImplementedError()
+        #raise NotImplementedError()
+        pass
 
     @abstractmethod
     def get_age(self):
-        raise NotImplementedError()
+        #raise NotImplementedError()
+        pass
 
 
 '''
