@@ -45,9 +45,9 @@ def main():
     a, operation, b = sys.argv[1:]
 
     command = commands[operation]
-    print(command.execute(a, b))
+    print(command.execute(int(a), int(b)))
 
-    
+
 if __name__=='__main__':
 
     main()
