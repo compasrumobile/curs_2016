@@ -1,13 +1,17 @@
-
+from abc import ABCMeta, abstractmethod
 
 '''
 Интерфейс
 '''
 class StudentInterface:
 
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
     def get_name(self):
         raise NotImplementedError()
 
+    @abstractmethod
     def get_age(self):
         raise NotImplementedError()
 
