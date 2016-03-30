@@ -27,7 +27,7 @@ class TestTankLogic(unittest.TestCase):
         self.assertEqual(self.tank1.pos, 0)
 
 
-if __name__ == '__main__':
-
-    # запускает систему тестирования
-    unittest.main()
+# if __name__ == '__main__':
+#
+#     # запускает систему тестирования
+#     unittest.main()
