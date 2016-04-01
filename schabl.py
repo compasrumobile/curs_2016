@@ -1,4 +1,4 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta, abstractmethod, abstractproperty
 
 '''
 Интерфейс
@@ -17,11 +17,19 @@ class StudentInterface:
         #raise NotImplementedError()
         pass
 
+    @abstractproperty
+    def count(self):
+        pass
+
 
 '''
 ios
 '''
 class IosStudent(StudentInterface):
+
+    @property
+    def count(self):
+        return 9
 
     def get_name(self):
         return '{} [ios]'.format(self.name)
